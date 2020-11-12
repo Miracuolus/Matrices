@@ -34,6 +34,16 @@ class Matrix:
             result._value[i] = self._value[i] + matrix._value[i]
         return result
     
+    def __sub__(self, matrix):
+        if self._row != matrix._row:
+            raise Matrix.ValueRowError()
+        if self._col != matrix._col:
+            raise Matrix.ValueColError()
+        result = Matrix(self._row, self._col)
+        for i in range(len(self._value)):
+            result._value[i] = self._value[i] - matrix._value[i]
+        return result
+    
     def __str__(self):
         return f'{ self._value}'
 
@@ -46,6 +56,8 @@ for i in range(B.row_value()):
     for j in range(B.col_value()):
         B.set_value(i, j, i+j)
 C = A + B
-print(A)
-print(B)
-print(C)
+D = A - A
+print(f'A = {A}')
+print(f'B = {B}')
+print(f'C = {C}')
+print(f'D = {D}')
