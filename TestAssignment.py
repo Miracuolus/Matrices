@@ -47,11 +47,26 @@ class Matrix:
                 result.set_value(i, j, value)
         return result
     
+    @staticmethod
+    def fromstring(line):
+        rows = line[1:-1].split(';')
+        for i in range(len(rows)):
+            rows[i] = rows[i].lstrip(' ').split(' ')
+        for j in rows:
+            l = len(j)
+            if len(rows[0]) != l:
+                raise Matrix.SizeMisMatch()
+        m = Matrix(len(rows), len(rows[0]))
+        for i in range(len(rows)):
+            for j in range(len(rows[i])):
+                m.set_value(i, j, int(rows[i][j]))
+        return m
+    
     def __str__(self):
         return f'{ self._value}'
 
 
-
+"""
 A = Matrix(2, 2)
 A.set_value(0,0,10)
 B = Matrix(2, 2)
@@ -66,3 +81,14 @@ print(f'B = {B}')
 print(f'C = {C}')
 print(f'D = {D}')
 print(f'G = {G}')
+"""
+try:
+    while True:
+        line = input()
+        if not line or not line.strip():
+            #m = Matrix.fromsting(line)#[1 2; 3 4; 5 6]
+            break
+        print(Matrix.fromstring(line.split('=')[1]))
+    cond = input()
+except ValueError:
+    print('*Ошибка! Необходимо вводить данные в числовых значениях')
