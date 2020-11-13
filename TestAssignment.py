@@ -82,13 +82,16 @@ print(f'C = {C}')
 print(f'D = {D}')
 print(f'G = {G}')
 """
+matrix_dict = dict()
 try:
     while True:
         line = input()
         if not line or not line.strip():
-            #m = Matrix.fromsting(line)#[1 2; 3 4; 5 6]
             break
-        print(Matrix.fromstring(line.split('=')[1]))
+        name, value = line.split('=')
+        matrix_dict[name] = Matrix.fromstring(value)
+        print(matrix_dict)
     cond = input()
+    result = exec('print('+cond+')', matrix_dict)
 except ValueError:
     print('*Ошибка! Необходимо вводить данные в числовых значениях')
