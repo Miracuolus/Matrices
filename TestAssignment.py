@@ -109,3 +109,5 @@ try:
     result = exec('print('+cond+')', matrix_dict)
 except (Matrix.SizeMissMatchException, Matrix.IllegalArgumentException, IllegalInputException) as exception:
     print('Exception caughtg: ' + type(exception).__name__ + '. ' + exception.message)
+except Exception as exception:
+    print('Exception caughtg: ' + type(exception).__name__ + '. Wrong input condition')
