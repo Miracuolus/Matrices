@@ -1,33 +1,34 @@
 class IllegalInputException(Exception):
         def __init__(self, message):
             self.message = message
+
+
 class Matrix:
     class SizeMissMatchException(Exception):
         def __init__(self, message):
             self.message = message
-    
+
     class IllegalArgumentException(Exception):
         def __init__(self, message):
             self.message = message
-
 
     def __init__(self, row, col):
         self._row = row
         self._col = col
         self._value = [0 for _ in range(row*col)]
-    
+
     def row_value(self):
         return self._row
-    
+
     def col_value(self):
         return self._col
-    
+
     def get_value(self, r, c):
         return self._value[r*self._col + c]
 
     def set_value(self, r, c, value):
         self._value[r*self._col + c] = value
-    
+
     def __add__(self, matrix):
         if self._row != matrix._row or self._col != matrix._col:
             raise Matrix.SizeMissMatchException("Can't perform addition")
@@ -35,7 +36,7 @@ class Matrix:
         for i in range(len(self._value)):
             result._value[i] = self._value[i] + matrix._value[i]
         return result
-    
+
     def __sub__(self, matrix):
         if self._row != matrix._row or self._col != matrix._col:
             raise Matrix.SizeMissMatchException("Can't perform subtraction")
@@ -43,7 +44,7 @@ class Matrix:
         for i in range(len(self._value)):
             result._value[i] = self._value[i] - matrix._value[i]
         return result
-    
+
     def __mul__(self, matrix):
         if self._col != matrix._row:
             raise Matrix.SizeMissMatchException("Can't perform multiplication")
@@ -55,7 +56,7 @@ class Matrix:
                     value += self.get_value(i, v) * matrix.get_value(v, j)
                 result.set_value(i, j, value)
         return result
-    
+
     @staticmethod
     def fromstring(line):
         rows = line[1:-1].split(';')
@@ -73,7 +74,7 @@ class Matrix:
                 except ValueError:
                     raise Matrix.IllegalArgumentException("Can't read matrix")
         return m
-    
+
     def __str__(self):
         s = '['
         for i in range(self._row):
@@ -107,4 +108,4 @@ try:
         raise IllegalInputException('Incorrect input pattern')
     result = exec('print('+cond+')', matrix_dict)
 except (Matrix.SizeMissMatchException, Matrix.IllegalArgumentException, IllegalInputException) as exception:
-    print('Exception caughtg: ' + type(exception).__name__ +'. ' + exception.message)
+    print('Exception caughtg: ' + type(exception).__name__ + '. ' + exception.message)
