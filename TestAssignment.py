@@ -1,5 +1,5 @@
 class Matrix:
-    class SizeMisMatch(Exception):
+    class SizeMissMatch(Exception):
         pass
 
     def __init__(self, row, col):
@@ -21,7 +21,7 @@ class Matrix:
     
     def __add__(self, matrix):
         if self._row != matrix._row or self._col != matrix._col:
-            raise Matrix.SizeMisMatch()
+            raise Matrix.SizeMissMatch()
         result = Matrix(self._row, self._col)
         for i in range(len(self._value)):
             result._value[i] = self._value[i] + matrix._value[i]
@@ -29,7 +29,7 @@ class Matrix:
     
     def __sub__(self, matrix):
         if self._row != matrix._row or self._col != matrix._col:
-            raise Matrix.SizeMisMatch()
+            raise Matrix.SizeMissMatch()
         result = Matrix(self._row, self._col)
         for i in range(len(self._value)):
             result._value[i] = self._value[i] - matrix._value[i]
@@ -37,7 +37,7 @@ class Matrix:
     
     def __mul__(self, matrix):
         if self._col != matrix._row:
-            raise Matrix.SizeMisMatch()
+            raise Matrix.SizeMissMatch()
         result = Matrix(self._row, matrix._col)
         for i in range(result._row):
             for j in range(result._col):
@@ -55,7 +55,7 @@ class Matrix:
         for j in rows:
             l = len(j)
             if len(rows[0]) != l:
-                raise Matrix.SizeMisMatch()
+                raise Matrix.SizeMissMatch()
         m = Matrix(len(rows), len(rows[0]))
         for i in range(len(rows)):
             for j in range(len(rows[i])):
@@ -63,25 +63,18 @@ class Matrix:
         return m
     
     def __str__(self):
-        return f'{ self._value}'
+        s = '['
+        for i in range(self._row):
+            for j in range(self._col):
+                s += f'{ self._value[i*self._col+j] }'
+                if j+1 != self._col:
+                    s += ' '
+            if i+1 != self._row:
+                s += '; '
+        s += ']'
+        return f'{ s}'
 
 
-"""
-A = Matrix(2, 2)
-A.set_value(0,0,10)
-B = Matrix(2, 2)
-for i in range(B.row_value()):
-    for j in range(B.col_value()):
-        B.set_value(i, j, i+j)
-C = A + B
-D = C + A - C
-G = A * B
-print(f'A = {A}')
-print(f'B = {B}')
-print(f'C = {C}')
-print(f'D = {D}')
-print(f'G = {G}')
-"""
 matrix_dict = dict()
 try:
     while True:
@@ -90,7 +83,6 @@ try:
             break
         name, value = line.split('=')
         matrix_dict[name] = Matrix.fromstring(value)
-        print(matrix_dict)
     cond = input()
     result = exec('print('+cond+')', matrix_dict)
 except ValueError:
