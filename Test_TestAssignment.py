@@ -32,9 +32,40 @@ class TestMatrixMethod(unittest.TestCase):
         self.assertEqual(self.matrix.col_value(), m.col_value(),
                         'matrices have different number of columns')
     
-    def test_exc_size_matrix(self):
+    def test_exc_size_matrix_foradd(self):
         m = Matrix(4, 3)
         self.assertRaises(Matrix.SizeMissMatchException, Matrix.__add__, self.matrix, m)
+    
+    def test_add_matrix(self):
+        m1 = Matrix(1, 1, [1, 1, 1, 1])
+        m2 = Matrix(1, 1, [1, 1, 1, 1])
+        r = m1 + m2
+        self.assertEqual(r.row_value(), m1.row_value(),
+                        'number of rows in the result differs from the original')
+        self.assertEqual(r.col_value(), m1.col_value(),
+                        'number of columns in the result differs from the original')
+        for i in range(r.row_value()):
+            for j in range(r.col_value()):
+                self.assertEqual(r.get_value(i, j), m1.get_value(i, j) + m2.get_value(i, j),
+                                'addition error')
+    
+    def test_exc_size_matrix_forsub(self):
+        m = Matrix(4, 3)
+        self.assertRaises(Matrix.SizeMissMatchException, Matrix.__sub__, self.matrix, m)
+    
+    def test_sub_matrix(self):
+        m1 = Matrix(1, 1, [1, 1, 1, 1])
+        m2 = Matrix(1, 1, [1, 1, 1, 1])
+        r = m1 - m2
+        self.assertEqual(r.row_value(), m1.row_value(),
+                        'number of rows in the result differs from the original')
+        self.assertEqual(r.col_value(), m1.col_value(),
+                        'number of columns in the result differs from the original')
+        for i in range(r.row_value()):
+            for j in range(r.col_value()):
+                self.assertEqual(r.get_value(i, j), m1.get_value(i, j) - m2.get_value(i, j),
+                                'subtraction error')
+
 
 if __name__ == '__main__':
     unittest.main()
