@@ -65,6 +65,26 @@ class TestMatrixMethod(unittest.TestCase):
             for j in range(r.col_value()):
                 self.assertEqual(r.get_value(i, j), m1.get_value(i, j) - m2.get_value(i, j),
                                 'subtraction error')
+    
+    def test_exc_size_matrix_formul(self):
+        m = Matrix(2, 2)
+        self.assertRaises(Matrix.SizeMissMatchException, Matrix.__mul__, self.matrix, m)
+    
+    def test_size_matrix_formul(self):
+        m = Matrix(4, 1)
+        self.assertEqual(self.matrix.col_value(), m.row_value(),
+                        'matrices cannot be multiplied')
+    
+    def test_mul_matrix(self):
+        m1 = Matrix(3, 2, [9, 8, -10, -4, -3, -9])
+        m2 = Matrix(2, 2, [-6, 4, 4, 10])
+        r = Matrix(3, 2, [-22, 116, 44, -80, -18, -102])
+        #m = Matrix.__mul__(m1, m2)
+        for i in range(r.row_value()):
+            for j in range(r.col_value()):
+                self.assertEqual(r.get_value(i, j), Matrix.__mul__(m1, m2).get_value(i, j),
+                                'multiplied error')
+
 
 
 if __name__ == '__main__':
