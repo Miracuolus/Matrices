@@ -278,27 +278,27 @@ class Matrix:
         s += ']'
         return f'{ s}'
 
-
-matrix_dict = dict()
-try:
-    while True:
-        line = input()
-        if not line or not line.strip():
-            if len(matrix_dict) == 0:
-                raise IllegalInputException('Incorrect input pattern')
-            else:
-                break
-        name, *value = line.split('=')
-        if len(value) != 1:
-            raise IllegalInputException('Incorrect input matrix')
-        if not name.isupper() or len(name) != 1:
-            raise Matrix.IllegalArgumentException('Wrong name of matrix')
-        matrix_dict[name] = Matrix.fromstring(*value)
-    cond = input()
-    if not cond or not cond.strip():
-        raise IllegalInputException('Incorrect input pattern')
-    result = exec('print('+cond+')', matrix_dict)
-except (Matrix.SizeMissMatchException, Matrix.IllegalArgumentException, IllegalInputException) as exception:
-    print('Exception caughtg: ' + type(exception).__name__ + '. ' + exception.message)
-except Exception as exception:
-    print('Exception caughtg: ' + type(exception).__name__ + '. Wrong input condition')
+if __name__ == "__main__":
+    matrix_dict = dict()
+    try:
+        while True:
+            line = input()
+            if not line or not line.strip():
+                if len(matrix_dict) == 0:
+                    raise IllegalInputException('Incorrect input pattern')
+                else:
+                    break
+            name, *value = line.split('=')
+            if len(value) != 1:
+                raise IllegalInputException('Incorrect input matrix')
+            if not name.isupper() or len(name) != 1:
+                raise Matrix.IllegalArgumentException('Wrong name of matrix')
+            matrix_dict[name] = Matrix.fromstring(*value)
+        cond = input()
+        if not cond or not cond.strip():
+            raise IllegalInputException('Incorrect input pattern')
+        result = exec('print('+cond+')', matrix_dict)
+    except (Matrix.SizeMissMatchException, Matrix.IllegalArgumentException, IllegalInputException) as exception:
+        print('Exception caughtg: ' + type(exception).__name__ + '. ' + exception.message)
+    except Exception as exception:
+        print('Exception caughtg: ' + type(exception).__name__ + '. Wrong input condition')
