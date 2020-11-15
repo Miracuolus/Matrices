@@ -278,7 +278,26 @@ class Matrix:
         s += ']'
         return f'{ s}'
 
-if __name__ == "__main__":
+def main(input=input, output=print):
+    """
+    Main function.
+
+    User input. Converting strings into matrices, performing the 
+    operation in accordance with the entered condition. 
+    Outputting the result.
+
+    Parameters
+    ----------
+    input : optional
+            Input interface (default is input)
+    output : optional
+            Output interface (default is print)
+
+    Raises
+    ------
+    IllegalInputException
+        Invalid data input
+    """
     matrix_dict = dict()
     try:
         while True:
@@ -297,8 +316,12 @@ if __name__ == "__main__":
         cond = input()
         if not cond or not cond.strip():
             raise IllegalInputException('Incorrect input pattern')
-        result = exec('print('+cond+')', matrix_dict)
+        matrix_dict['output'] = output
+        result = exec('output('+cond+')', matrix_dict)
     except (Matrix.SizeMissMatchException, Matrix.IllegalArgumentException, IllegalInputException) as exception:
         print('Exception caughtg: ' + type(exception).__name__ + '. ' + exception.message)
     except Exception as exception:
         print('Exception caughtg: ' + type(exception).__name__ + '. Wrong input condition')
+
+if __name__ == "__main__":
+    main()
