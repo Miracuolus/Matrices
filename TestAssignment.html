@@ -9,11 +9,8 @@
 <font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>TestAssignment</strong></big></big></font></td
 ><td align=right valign=bottom
 ><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:d%3A%5Ch%5Cpython%5Cmatrices%5Ctestassignment.py">d:\h\python\matrices\testassignment.py</a></font></td></tr></table>
-    <p><tt>This&nbsp;example&nbsp;module&nbsp;shows&nbsp;various&nbsp;types&nbsp;of&nbsp;documentation&nbsp;available&nbsp;for&nbsp;use<br>
-with&nbsp;pydoc.&nbsp;&nbsp;To&nbsp;generate&nbsp;HTML&nbsp;documentation&nbsp;for&nbsp;this&nbsp;module&nbsp;issue&nbsp;the<br>
-command:<br>
-&nbsp;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;pydoc&nbsp;-w&nbsp;foo</tt></p>
+    <p><tt>This&nbsp;module&nbsp;implements&nbsp;basic&nbsp;matrix&nbsp;operations:&nbsp;addition,&nbsp;subtraction&nbsp;and<br>
+multiplication.</tt></p>
 <p>
 <table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
 <tr bgcolor="#ee77aa">
@@ -117,30 +114,146 @@ Data descriptors inherited from <a href="builtins.html#BaseException">builtins.B
 <tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
 <td colspan=2><tt><a href="#Matrix">Matrix</a>(row,&nbsp;col)<br>
 &nbsp;<br>
-<br>&nbsp;</tt></td></tr>
+A&nbsp;class&nbsp;created&nbsp;matrix<br>
+&nbsp;<br>
+Attributes<br>
+----------<br>
+_row&nbsp;:&nbsp;int<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Number&nbsp;of&nbsp;rows&nbsp;in&nbsp;a&nbsp;matrix<br>
+_col&nbsp;:&nbsp;int<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Number&nbsp;of&nbsp;columns&nbsp;in&nbsp;a&nbsp;matrix<br>
+_value&nbsp;:&nbsp;int<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#Matrix">Matrix</a>&nbsp;values<br>
+&nbsp;<br>
+Methods<br>
+-------<br>
+<a href="#Matrix-row_value">row_value</a>()<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Returns&nbsp;the&nbsp;number&nbsp;of&nbsp;rows<br>
+<a href="#Matrix-col_value">col_value</a>()<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Returns&nbsp;the&nbsp;number&nbsp;of&nbsp;columns<br>
+<a href="#Matrix-get_value">get_value</a>(r,&nbsp;c)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Returns&nbsp;the&nbsp;value&nbsp;by&nbsp;row&nbsp;and&nbsp;column<br>
+<a href="#Matrix-set_value">set_value</a>(r,&nbsp;c,&nbsp;value)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Sets&nbsp;the&nbsp;value&nbsp;by&nbsp;row&nbsp;and&nbsp;column<br>
+<a href="#Matrix-__add__">__add__</a>(matrix)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Overriding&nbsp;the&nbsp;addition&nbsp;operation<br>
+<a href="#Matrix-__sub__">__sub__</a>(matrix)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Overriding&nbsp;the&nbsp;subtraction&nbsp;operation<br>
+<a href="#Matrix-__mul__">__mul__</a>(matrix)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Overriding&nbsp;the&nbsp;multiplication&nbsp;operation<br>
+<a href="#Matrix-__str__">__str__</a>()<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Print&nbsp;matrix&nbsp;in&nbsp;accordance&nbsp;with&nbsp;the&nbsp;requirements<br>
+&nbsp;<br>
+<a href="builtins.html#Exception">Exception</a><br>
+----------<br>
+SizeMissMatchException<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Raise&nbsp;when&nbsp;matrix&nbsp;size&nbsp;mismatch<br>
+IllegalArgumentException<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Raise&nbsp;when&nbsp;matrix&nbsp;argument&nbsp;is&nbsp;invalid<br>
+&nbsp;<br>
+Staticmethod<br>
+----------<br>
+<a href="#Matrix-fromstring">fromstring</a>(line)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Converting&nbsp;data&nbsp;from&nbsp;string&nbsp;to&nbsp;matrix<br>&nbsp;</tt></td></tr>
 <tr><td>&nbsp;</td>
 <td width="100%">Methods defined here:<br>
-<dl><dt><a name="Matrix-__add__"><strong>__add__</strong></a>(self, matrix)</dt></dl>
+<dl><dt><a name="Matrix-__add__"><strong>__add__</strong></a>(self, matrix)</dt><dd><tt>Overriding&nbsp;the&nbsp;addition&nbsp;operation.<br>
+&nbsp;<br>
+Returns&nbsp;the&nbsp;result&nbsp;of&nbsp;the&nbsp;operation<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+matrix&nbsp;:&nbsp;<a href="#Matrix">Matrix</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#Matrix">Matrix</a>&nbsp;with&nbsp;which&nbsp;to&nbsp;add&nbsp;the&nbsp;current&nbsp;matrix<br>
+&nbsp;<br>
+Raises<br>
+------<br>
+SizeMissMatchException<br>
+&nbsp;&nbsp;&nbsp;&nbsp;If&nbsp;the&nbsp;number&nbsp;of&nbsp;rows&nbsp;and&nbsp;columns&nbsp;of&nbsp;the&nbsp;matrices&nbsp;is&nbsp;different</tt></dd></dl>
 
-<dl><dt><a name="Matrix-__init__"><strong>__init__</strong></a>(self, row, col)</dt><dd><tt>Initialize&nbsp;self.&nbsp;&nbsp;See&nbsp;help(type(self))&nbsp;for&nbsp;accurate&nbsp;signature.</tt></dd></dl>
+<dl><dt><a name="Matrix-__init__"><strong>__init__</strong></a>(self, row, col)</dt><dd><tt>Attributes<br>
+----------<br>
+_value&nbsp;:&nbsp;int<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#Matrix">Matrix</a>&nbsp;values<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+_row&nbsp;:&nbsp;int<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Number&nbsp;of&nbsp;rows&nbsp;in&nbsp;a&nbsp;matrix<br>
+_col&nbsp;:&nbsp;int<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Number&nbsp;of&nbsp;columns&nbsp;in&nbsp;a&nbsp;matrix</tt></dd></dl>
 
-<dl><dt><a name="Matrix-__mul__"><strong>__mul__</strong></a>(self, matrix)</dt></dl>
+<dl><dt><a name="Matrix-__mul__"><strong>__mul__</strong></a>(self, matrix)</dt><dd><tt>Overriding&nbsp;the&nbsp;multiplication&nbsp;operation.<br>
+&nbsp;<br>
+Returns&nbsp;the&nbsp;result&nbsp;of&nbsp;the&nbsp;operation<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+matrix&nbsp;:&nbsp;<a href="#Matrix">Matrix</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#Matrix">Matrix</a>&nbsp;with&nbsp;which&nbsp;to&nbsp;multiplication&nbsp;the&nbsp;current&nbsp;matrix<br>
+&nbsp;<br>
+Raises<br>
+------<br>
+SizeMissMatchException<br>
+&nbsp;&nbsp;&nbsp;&nbsp;If&nbsp;the&nbsp;number&nbsp;of&nbsp;rows&nbsp;and&nbsp;columns&nbsp;of&nbsp;the&nbsp;matrices&nbsp;is&nbsp;different</tt></dd></dl>
 
-<dl><dt><a name="Matrix-__str__"><strong>__str__</strong></a>(self)</dt><dd><tt>Return&nbsp;str(self).</tt></dd></dl>
+<dl><dt><a name="Matrix-__str__"><strong>__str__</strong></a>(self)</dt><dd><tt>Print&nbsp;matrix&nbsp;in&nbsp;accordance&nbsp;with&nbsp;the&nbsp;requirements</tt></dd></dl>
 
-<dl><dt><a name="Matrix-__sub__"><strong>__sub__</strong></a>(self, matrix)</dt></dl>
+<dl><dt><a name="Matrix-__sub__"><strong>__sub__</strong></a>(self, matrix)</dt><dd><tt>Overriding&nbsp;the&nbsp;subtraction&nbsp;operation.<br>
+&nbsp;<br>
+Returns&nbsp;the&nbsp;result&nbsp;of&nbsp;the&nbsp;operation<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+matrix&nbsp;:&nbsp;<a href="#Matrix">Matrix</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#Matrix">Matrix</a>&nbsp;with&nbsp;which&nbsp;to&nbsp;subtraction&nbsp;the&nbsp;current&nbsp;matrix<br>
+&nbsp;<br>
+Raises<br>
+------<br>
+SizeMissMatchException<br>
+&nbsp;&nbsp;&nbsp;&nbsp;If&nbsp;the&nbsp;number&nbsp;of&nbsp;rows&nbsp;and&nbsp;columns&nbsp;of&nbsp;the&nbsp;matrices&nbsp;is&nbsp;different</tt></dd></dl>
 
-<dl><dt><a name="Matrix-col_value"><strong>col_value</strong></a>(self)</dt></dl>
+<dl><dt><a name="Matrix-col_value"><strong>col_value</strong></a>(self)</dt><dd><tt>Returns&nbsp;the&nbsp;number&nbsp;of&nbsp;columns</tt></dd></dl>
 
-<dl><dt><a name="Matrix-get_value"><strong>get_value</strong></a>(self, r, c)</dt></dl>
+<dl><dt><a name="Matrix-get_value"><strong>get_value</strong></a>(self, r, c)</dt><dd><tt>Returns&nbsp;the&nbsp;value&nbsp;by&nbsp;row&nbsp;and&nbsp;column.<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+r&nbsp;:&nbsp;int<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Number&nbsp;of&nbsp;rows&nbsp;in&nbsp;a&nbsp;matrix<br>
+c&nbsp;:&nbsp;int<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Number&nbsp;of&nbsp;columns&nbsp;in&nbsp;a&nbsp;matrix</tt></dd></dl>
 
-<dl><dt><a name="Matrix-row_value"><strong>row_value</strong></a>(self)</dt></dl>
+<dl><dt><a name="Matrix-row_value"><strong>row_value</strong></a>(self)</dt><dd><tt>Returns&nbsp;the&nbsp;number&nbsp;of&nbsp;rows</tt></dd></dl>
 
-<dl><dt><a name="Matrix-set_value"><strong>set_value</strong></a>(self, r, c, value)</dt></dl>
+<dl><dt><a name="Matrix-set_value"><strong>set_value</strong></a>(self, r, c, value)</dt><dd><tt>Sets&nbsp;the&nbsp;value&nbsp;by&nbsp;row&nbsp;and&nbsp;column.<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+r&nbsp;:&nbsp;int<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Number&nbsp;of&nbsp;rows&nbsp;in&nbsp;a&nbsp;matrix<br>
+c&nbsp;:&nbsp;int<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Number&nbsp;of&nbsp;columns&nbsp;in&nbsp;a&nbsp;matrix<br>
+value&nbsp;:&nbsp;int<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#Matrix">Matrix</a>&nbsp;value</tt></dd></dl>
 
 <hr>
 Static methods defined here:<br>
-<dl><dt><a name="Matrix-fromstring"><strong>fromstring</strong></a>(line)</dt></dl>
+<dl><dt><a name="Matrix-fromstring"><strong>fromstring</strong></a>(line)</dt><dd><tt>Converting&nbsp;data&nbsp;from&nbsp;string&nbsp;to&nbsp;matrix<br>
+&nbsp;<br>
+Returns&nbsp;the&nbsp;result&nbsp;in&nbsp;<a href="#Matrix">Matrix</a>&nbsp;format<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+line&nbsp;:&nbsp;str<br>
+&nbsp;&nbsp;&nbsp;&nbsp;String&nbsp;received&nbsp;on&nbsp;input<br>
+&nbsp;<br>
+Raises<br>
+------<br>
+SizeMissMatchException<br>
+&nbsp;&nbsp;&nbsp;&nbsp;If&nbsp;the&nbsp;number&nbsp;of&nbsp;rows&nbsp;and&nbsp;columns&nbsp;of&nbsp;the&nbsp;matrices&nbsp;is&nbsp;different<br>
+IllegalArgumentException<br>
+&nbsp;&nbsp;&nbsp;&nbsp;If&nbsp;the&nbsp;arrgument&nbsp;of&nbsp;the&nbsp;matrices&nbsp;is&nbsp;invalid</tt></dd></dl>
 
 <hr>
 Data descriptors defined here:<br>
@@ -152,9 +265,19 @@ Data descriptors defined here:<br>
 </dl>
 <hr>
 Data and other attributes defined here:<br>
-<dl><dt><strong>IllegalArgumentException</strong> = &lt;class 'TestAssignment.Matrix.IllegalArgumentException'&gt;</dl>
+<dl><dt><strong>IllegalArgumentException</strong> = &lt;class 'TestAssignment.Matrix.IllegalArgumentException'&gt;<dd><tt>Raise&nbsp;when&nbsp;matrix&nbsp;argument&nbsp;is&nbsp;invalid<br>
+&nbsp;<br>
+Attributes<br>
+----------<br>
+message&nbsp;:&nbsp;str<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Error&nbsp;description</tt></dl>
 
-<dl><dt><strong>SizeMissMatchException</strong> = &lt;class 'TestAssignment.Matrix.SizeMissMatchException'&gt;</dl>
+<dl><dt><strong>SizeMissMatchException</strong> = &lt;class 'TestAssignment.Matrix.SizeMissMatchException'&gt;<dd><tt>Raise&nbsp;when&nbsp;matrix&nbsp;size&nbsp;mismatch<br>
+&nbsp;<br>
+Attributes<br>
+----------<br>
+message&nbsp;:&nbsp;str<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Error&nbsp;description</tt></dl>
 
 </td></tr></table></td></tr></table><p>
 <table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
