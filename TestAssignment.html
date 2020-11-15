@@ -112,18 +112,18 @@ Data descriptors inherited from <a href="builtins.html#BaseException">builtins.B
 <font color="#000000" face="helvetica, arial"><a name="Matrix">class <strong>Matrix</strong></a>(<a href="builtins.html#object">builtins.object</a>)</font></td></tr>
     
 <tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
-<td colspan=2><tt><a href="#Matrix">Matrix</a>(row,&nbsp;col)<br>
+<td colspan=2><tt><a href="#Matrix">Matrix</a>(row,&nbsp;col,&nbsp;values=None)<br>
 &nbsp;<br>
 A&nbsp;class&nbsp;created&nbsp;matrix<br>
 &nbsp;<br>
 Attributes<br>
 ----------<br>
-_row&nbsp;:&nbsp;int<br>
+row&nbsp;:&nbsp;int<br>
 &nbsp;&nbsp;&nbsp;&nbsp;Number&nbsp;of&nbsp;rows&nbsp;in&nbsp;a&nbsp;matrix<br>
-_col&nbsp;:&nbsp;int<br>
+col&nbsp;:&nbsp;int<br>
 &nbsp;&nbsp;&nbsp;&nbsp;Number&nbsp;of&nbsp;columns&nbsp;in&nbsp;a&nbsp;matrix<br>
-_value&nbsp;:&nbsp;int<br>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="#Matrix">Matrix</a>&nbsp;values<br>
+values&nbsp;:&nbsp;list,&nbsp;optional<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#Matrix">Matrix</a>&nbsp;values&nbsp;(default&nbsp;is&nbsp;None)<br>
 &nbsp;<br>
 Methods<br>
 -------<br>
@@ -171,17 +171,14 @@ Raises<br>
 SizeMissMatchException<br>
 &nbsp;&nbsp;&nbsp;&nbsp;If&nbsp;the&nbsp;number&nbsp;of&nbsp;rows&nbsp;and&nbsp;columns&nbsp;of&nbsp;the&nbsp;matrices&nbsp;is&nbsp;different</tt></dd></dl>
 
-<dl><dt><a name="Matrix-__init__"><strong>__init__</strong></a>(self, row, col)</dt><dd><tt>Attributes<br>
+<dl><dt><a name="Matrix-__init__"><strong>__init__</strong></a>(self, row, col, values=None)</dt><dd><tt>Parameters<br>
 ----------<br>
-_value&nbsp;:&nbsp;int<br>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="#Matrix">Matrix</a>&nbsp;values<br>
-&nbsp;<br>
-Parameters<br>
-----------<br>
-_row&nbsp;:&nbsp;int<br>
+row&nbsp;:&nbsp;int<br>
 &nbsp;&nbsp;&nbsp;&nbsp;Number&nbsp;of&nbsp;rows&nbsp;in&nbsp;a&nbsp;matrix<br>
-_col&nbsp;:&nbsp;int<br>
-&nbsp;&nbsp;&nbsp;&nbsp;Number&nbsp;of&nbsp;columns&nbsp;in&nbsp;a&nbsp;matrix</tt></dd></dl>
+col&nbsp;:&nbsp;int<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Number&nbsp;of&nbsp;columns&nbsp;in&nbsp;a&nbsp;matrix<br>
+values&nbsp;:&nbsp;list,&nbsp;optional<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#Matrix">Matrix</a>&nbsp;values&nbsp;(default&nbsp;is&nbsp;None)</tt></dd></dl>
 
 <dl><dt><a name="Matrix-__mul__"><strong>__mul__</strong></a>(self, matrix)</dt><dd><tt>Overriding&nbsp;the&nbsp;multiplication&nbsp;operation.<br>
 &nbsp;<br>
@@ -279,17 +276,5 @@ Attributes<br>
 message&nbsp;:&nbsp;str<br>
 &nbsp;&nbsp;&nbsp;&nbsp;Error&nbsp;description</tt></dl>
 
-</td></tr></table></td></tr></table><p>
-<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
-<tr bgcolor="#55aa55">
-<td colspan=3 valign=bottom>&nbsp;<br>
-<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
-    
-<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
-<td width="100%"><strong>cond</strong> = 'A+A'<br>
-<strong>line</strong> = ''<br>
-<strong>matrix_dict</strong> = {'A': &lt;TestAssignment.Matrix object&gt;, '__builtins__': {'ArithmeticError': &lt;class 'ArithmeticError'&gt;, 'AssertionError': &lt;class 'AssertionError'&gt;, 'AttributeError': &lt;class 'AttributeError'&gt;, 'BaseException': &lt;class 'BaseException'&gt;, 'BlockingIOError': &lt;class 'BlockingIOError'&gt;, 'BrokenPipeError': &lt;class 'BrokenPipeError'&gt;, 'BufferError': &lt;class 'BufferError'&gt;, 'BytesWarning': &lt;class 'BytesWarning'&gt;, 'ChildProcessError': &lt;class 'ChildProcessError'&gt;, 'ConnectionAbortedError': &lt;class 'ConnectionAbortedError'&gt;, ...}}<br>
-<strong>name</strong> = 'A'<br>
-<strong>result</strong> = None<br>
-<strong>value</strong> = ['[0]']</td></tr></table>
+</td></tr></table></td></tr></table>
 </body></html>

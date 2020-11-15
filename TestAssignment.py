@@ -29,12 +29,12 @@ class Matrix:
 
     Attributes
     ----------
-    _row : int
+    row : int
         Number of rows in a matrix
-    _col : int
+    col : int
         Number of columns in a matrix
-    _value : int
-        Matrix values
+    values : list, optional
+        Matrix values (default is None)
 
     Methods
     -------
@@ -103,23 +103,23 @@ class Matrix:
             """
             self.message = message
 
-    def __init__(self, row, col):
+    def __init__(self, row, col, values = None):
         """
-        Attributes
-        ----------
-        _value : int
-            Matrix values
-
         Parameters
         ----------
-        _row : int
+        row : int
             Number of rows in a matrix
-        _col : int
+        col : int
             Number of columns in a matrix
+        values : list, optional
+            Matrix values (default is None)
         """
         self._row = row
         self._col = col
         self._value = [0 for _ in range(row*col)]
+        if values:
+            for i in range(min(len(self._value),len(values))):
+                self._value[i] = values[i]
 
     def row_value(self):
         """Returns the number of rows"""
