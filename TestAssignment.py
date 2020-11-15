@@ -1,18 +1,122 @@
+"""
+This module implements basic matrix operations: addition, subtraction and
+multiplication.
+
+"""
 class IllegalInputException(Exception):
-        def __init__(self, message):
-            self.message = message
+    """
+    Execution for the data input format is incorrect
+    
+    Attributes
+    ----------
+    message : str
+        Error description
+    """
+
+    def __init__(self, message):
+        """
+        Parameters
+        ----------
+        message : str
+            Error description
+        """
+        self.message = message
 
 
 class Matrix:
+    """
+    A class created matrix
+
+    Attributes
+    ----------
+    _row : int
+        Number of rows in a matrix
+    _col : int
+        Number of columns in a matrix
+    _value : int
+        Matrix values
+
+    Methods
+    -------
+    row_value()
+        Returns the number of rows
+    col_value()
+        Returns the number of columns
+    get_value(r, c)
+        Returns the value by row and column
+    set_value(r, c, value)
+        Sets the value by row and column
+    __add__(matrix)
+        Overriding the addition operation
+    __sub__(matrix)
+        Overriding the subtraction operation
+    __mul__(matrix)
+        Overriding the multiplication operation
+    __str__()
+        Print matrix in accordance with the requirements
+    
+    Exception
+    ----------
+    SizeMissMatchException
+        Raise when matrix size mismatch
+    IllegalArgumentException
+        Raise when matrix argument is invalid
+
+    Staticmethod
+    ----------
+    fromstring(line)
+        Converting data from string to matrix
+    """
     class SizeMissMatchException(Exception):
+        """
+        Raise when matrix size mismatch
+        
+        Attributes
+        ----------
+        message : str
+            Error description
+        """
         def __init__(self, message):
+            """
+            Parameters
+            ----------
+            message : str
+                Error description
+            """
             self.message = message
 
     class IllegalArgumentException(Exception):
+        """
+        Raise when matrix argument is invalid
+        
+        Attributes
+        ----------
+        message : str
+            Error description
+        """
         def __init__(self, message):
+            """
+            Parameters
+            ----------
+            message : str
+                Error description
+            """
             self.message = message
 
     def __init__(self, row, col):
+        """
+        Attributes
+        ----------
+        _value : int
+            Matrix values
+
+        Parameters
+        ----------
+        _row : int
+            Number of rows in a matrix
+        _col : int
+            Number of columns in a matrix
+        """
         self._row = row
         self._col = col
         self._value = [0 for _ in range(row*col)]
