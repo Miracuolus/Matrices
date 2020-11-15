@@ -201,6 +201,61 @@ class TestMatrixMethod(unittest.TestCase):
             count += 1
             return input_lines[count-1]
         self.assertRaises(IllegalInputException, main, input, output)
+    
+    def test_exc_input_comma(self):
+        def output(res):
+            self.fail("shouldn't happen")
+        count = 0
+        input_lines = ['A=[0, 1]', '', 'A+A']
+        def input():
+            nonlocal count
+            count += 1
+            return input_lines[count-1]
+        self.assertRaises(Matrix.IllegalArgumentException, main, input, output)
+    
+    def test_exc_input_name_matrix(self):
+        def output(res):
+            self.fail("shouldn't happen")
+        count = 0
+        input_lines = ['A1=[0]', '', 'A']
+        def input():
+            nonlocal count
+            count += 1
+            return input_lines[count-1]
+        self.assertRaises(Matrix.IllegalArgumentException, main, input, output)
+    
+    def test_exc_input_name_type(self):
+        def output(res):
+            self.fail("shouldn't happen")
+        count = 0
+        input_lines = ['A=[1]', '', 'A/A']
+        def input():
+            nonlocal count
+            count += 1
+            return input_lines[count-1]
+        self.assertRaises(TypeError, main, input, output)
+    
+    def test_exc_input_decimal_value(self):
+        def output(res):
+            self.fail("shouldn't happen")
+        count = 0
+        input_lines = ['A=[1.0]', '', 'A+A']
+        def input():
+            nonlocal count
+            count += 1
+            return input_lines[count-1]
+        self.assertRaises(Matrix.IllegalArgumentException, main, input, output)
+    
+    def test_exc_input_wrong_name(self):
+        def output(res):
+            self.fail("shouldn't happen")
+        count = 0
+        input_lines = ['A=[1]', '', 'a']
+        def input():
+            nonlocal count
+            count += 1
+            return input_lines[count-1]
+        self.assertRaises(NameError, main, input, output)
 
 
 if __name__ == '__main__':
