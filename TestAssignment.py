@@ -3,10 +3,12 @@ This module implements basic matrix operations: addition, subtraction and
 multiplication.
 
 """
+
+
 class IllegalInputException(Exception):
     """
     Execution for the data input format is incorrect
-    
+
     Attributes
     ----------
     message : str
@@ -54,7 +56,7 @@ class Matrix:
         Overriding the multiplication operation
     __str__()
         Print matrix in accordance with the requirements
-    
+
     Exception
     ----------
     SizeMissMatchException
@@ -70,7 +72,7 @@ class Matrix:
     class SizeMissMatchException(Exception):
         """
         Raise when matrix size mismatch
-        
+
         Attributes
         ----------
         message : str
@@ -88,7 +90,7 @@ class Matrix:
     class IllegalArgumentException(Exception):
         """
         Raise when matrix argument is invalid
-        
+
         Attributes
         ----------
         message : str
@@ -103,7 +105,7 @@ class Matrix:
             """
             self.message = message
 
-    def __init__(self, row, col, values = None):
+    def __init__(self, row, col, values=None):
         """
         Parameters
         ----------
@@ -118,7 +120,7 @@ class Matrix:
         self._col = col
         self._value = [0 for _ in range(row*col)]
         if values:
-            for i in range(min(len(self._value),len(values))):
+            for i in range(min(len(self._value), len(values))):
                 self._value[i] = values[i]
 
     def row_value(self):
@@ -278,12 +280,13 @@ class Matrix:
         s += ']'
         return f'{ s}'
 
+
 def main(input=input, output=print):
     """
     Main function.
 
-    User input. Converting strings into matrices, performing the 
-    operation in accordance with the entered condition. 
+    User input. Converting strings into matrices, performing the
+    operation in accordance with the entered condition.
     Outputting the result.
 
     Parameters
