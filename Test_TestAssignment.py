@@ -1,5 +1,5 @@
 import unittest
-from TestAssignment import Matrix
+from TestAssignment import Matrix, IllegalInputException, main
 
 class TestMatrixMethod(unittest.TestCase):
     def setUp(self):
@@ -79,12 +79,128 @@ class TestMatrixMethod(unittest.TestCase):
         m1 = Matrix(3, 2, [9, 8, -10, -4, -3, -9])
         m2 = Matrix(2, 2, [-6, 4, 4, 10])
         r = Matrix(3, 2, [-22, 116, 44, -80, -18, -102])
-        #m = Matrix.__mul__(m1, m2)
         for i in range(r.row_value()):
             for j in range(r.col_value()):
                 self.assertEqual(r.get_value(i, j), Matrix.__mul__(m1, m2).get_value(i, j),
                                 'multiplied error')
+    
+    def test_exc_input_without(self):
+        line = '[]'
+        self.assertRaises(Matrix.IllegalArgumentException, Matrix.fromstring, line)
 
+    def test_exc_input_size(self):
+        line = '[1; 2 1]'
+        self.assertRaises(Matrix.SizeMissMatchException, Matrix.fromstring, line)
+    
+    def test_exc_input_null(self):
+        def output(res):
+            self.fail("shouldn't happen")
+        count = 0
+        input_lines = ['', '', 'A']
+        def input():
+            nonlocal count
+            count += 1
+            return input_lines[count-1]
+        self.assertRaises(IllegalInputException, main, input, output)
+
+    def test_exc_input_oneletter(self):
+        def output(res):
+            self.fail("shouldn't happen")
+        count = 0
+        input_lines = ['A', '', 'A']
+        def input():
+            nonlocal count
+            count += 1
+            return input_lines[count-1]
+        self.assertRaises(IllegalInputException, main, input, output)
+    
+    def test_exc_input_withoutsimbol(self):
+        def output(res):
+            self.fail("shouldn't happen")
+        count = 0
+        input_lines = ['A[1]', '', 'A']
+        def input():
+            nonlocal count
+            count += 1
+            return input_lines[count-1]
+        self.assertRaises(IllegalInputException, main, input, output)
+    
+    def test_exc_input_lowletter(self):
+        def output(res):
+            self.fail("shouldn't happen")
+        count = 0
+        input_lines = ['a=[0]', '', 'A']
+        def input():
+            nonlocal count
+            count += 1
+            return input_lines[count-1]
+        self.assertRaises(Matrix.IllegalArgumentException, main, input, output)
+    
+    def test_exc_input_letter(self):
+        def output(res):
+            self.fail("shouldn't happen")
+        count = 0
+        input_lines = ['AA=[0]', '', 'A']
+        def input():
+            nonlocal count
+            count += 1
+            return input_lines[count-1]
+        self.assertRaises(Matrix.IllegalArgumentException, main, input, output)
+    
+    def test_exc_input_withoutblank(self):
+        def output(res):
+            self.fail("shouldn't happen")
+        count = 0
+        input_lines = ['A=[1]', 'A+A']
+        def input():
+            nonlocal count
+            count += 1
+            return input_lines[count-1]
+        self.assertRaises(IllegalInputException, main, input, output)
+    
+    def test_exc_input_number(self):
+        def output(res):
+            self.fail("shouldn't happen")
+        count = 0
+        input_lines = ['1=[0]', '', 'A']
+        def input():
+            nonlocal count
+            count += 1
+            return input_lines[count-1]
+        self.assertRaises(Matrix.IllegalArgumentException, main, input, output)
+    
+    def test_exc_input_simbol(self):
+        def output(res):
+            self.fail("shouldn't happen")
+        count = 0
+        input_lines = ['A=[0', '', 'A']
+        def input():
+            nonlocal count
+            count += 1
+            return input_lines[count-1]
+        self.assertRaises(Matrix.IllegalArgumentException, main, input, output)
+    
+    def test_exc_input_cond(self):
+        def output(res):
+            self.fail("shouldn't happen")
+        count = 0
+        input_lines = ['A=[1]', '', ' ']
+        def input():
+            nonlocal count
+            count += 1
+            return input_lines[count-1]
+        self.assertRaises(IllegalInputException, main, input, output)
+    
+    def test_exc_input_2matrix(self):
+        def output(res):
+            self.fail("shouldn't happen")
+        count = 0
+        input_lines = ['A=[1]B=[2]', '', 'A+B']
+        def input():
+            nonlocal count
+            count += 1
+            return input_lines[count-1]
+        self.assertRaises(IllegalInputException, main, input, output)
 
 
 if __name__ == '__main__':
