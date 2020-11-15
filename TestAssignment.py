@@ -122,18 +122,57 @@ class Matrix:
         self._value = [0 for _ in range(row*col)]
 
     def row_value(self):
+        """Returns the number of rows"""
         return self._row
 
     def col_value(self):
+        """Returns the number of columns"""
         return self._col
 
     def get_value(self, r, c):
+        """
+        Returns the value by row and column.
+
+        Parameters
+        ----------
+        r : int
+            Number of rows in a matrix
+        c : int
+            Number of columns in a matrix
+        """
         return self._value[r*self._col + c]
 
     def set_value(self, r, c, value):
+        """
+        Sets the value by row and column.
+
+        Parameters
+        ----------
+        r : int
+            Number of rows in a matrix
+        c : int
+            Number of columns in a matrix
+        value : int
+            Matrix value
+        """
         self._value[r*self._col + c] = value
 
     def __add__(self, matrix):
+        """
+        Overriding the addition operation.
+
+        Returns the result of the operation
+
+        Parameters
+        ----------
+        matrix : Matrix
+            Matrix with which to add the current matrix
+
+        Raises
+        ------
+        SizeMissMatchException
+            If the number of rows and columns of the matrices is different
+        """
         if self._row != matrix._row or self._col != matrix._col:
             raise Matrix.SizeMissMatchException("Can't perform addition")
         result = Matrix(self._row, self._col)
@@ -142,6 +181,21 @@ class Matrix:
         return result
 
     def __sub__(self, matrix):
+        """
+        Overriding the subtraction operation.
+
+        Returns the result of the operation
+
+        Parameters
+        ----------
+        matrix : Matrix
+            Matrix with which to subtraction the current matrix
+
+        Raises
+        ------
+        SizeMissMatchException
+            If the number of rows and columns of the matrices is different
+        """
         if self._row != matrix._row or self._col != matrix._col:
             raise Matrix.SizeMissMatchException("Can't perform subtraction")
         result = Matrix(self._row, self._col)
@@ -150,6 +204,21 @@ class Matrix:
         return result
 
     def __mul__(self, matrix):
+        """
+        Overriding the multiplication operation.
+
+        Returns the result of the operation
+
+        Parameters
+        ----------
+        matrix : Matrix
+            Matrix with which to multiplication the current matrix
+
+        Raises
+        ------
+        SizeMissMatchException
+            If the number of rows and columns of the matrices is different
+        """
         if self._col != matrix._row:
             raise Matrix.SizeMissMatchException("Can't perform multiplication")
         result = Matrix(self._row, matrix._col)
@@ -163,6 +232,23 @@ class Matrix:
 
     @staticmethod
     def fromstring(line):
+        """
+        Converting data from string to matrix
+
+        Returns the result in Matrix format
+
+        Parameters
+        ----------
+        line : str
+            String received on input
+
+        Raises
+        ------
+        SizeMissMatchException
+            If the number of rows and columns of the matrices is different
+        IllegalArgumentException
+            If the arrgument of the matrices is invalid
+        """
         rows = line[1:-1].split(';')
         for i in range(len(rows)):
             rows[i] = rows[i].lstrip(' ').split(' ')
@@ -180,6 +266,7 @@ class Matrix:
         return m
 
     def __str__(self):
+        """Print matrix in accordance with the requirements"""
         s = '['
         for i in range(self._row):
             for j in range(self._col):
